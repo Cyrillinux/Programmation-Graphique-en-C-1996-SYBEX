@@ -1,6 +1,6 @@
 Sauvegarde des programmes C du livre Programmation Graphique en C de 1996 aux éditions SYBEX
 
-Des exemples modifiés et compilés sous Turbo C 3.0
+Des exemples modifiés et compilés avec Turbo C 3.0 sous DOSBox
 
 Les programmes sources et exÇcutables des diffÇrents chapitres du livre sont 
 regroupÇs dans les rÇpertoires suivants : 
