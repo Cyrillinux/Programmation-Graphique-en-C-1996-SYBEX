@@ -1,1 +1,71 @@
+Les programmes sources et ex‚cutables des diff‚rents chapitres du livre sont 
+regroup‚s dans les r‚pertoires suivants : 
+
+þ BIBLIOTHEQUE GRAPHIQUE VGA STANDARD : r‚pertoire \LIB_VGA
+þ EDITEUR DE PALETTE                  : r‚pertoire \EDITEUR
+þ LA 3D POLYGONALE                    : r‚pertoire \3D
+þ EFFET SPECIAUX                      : r‚pertoire \EFFETS 
+þ REALISATIONS                        : r‚pertoire \JEUX 
+
+Les sources sont contenus dans les r‚pertoires SOURCES et les ex‚cutables dans
+les r‚pertoires EXE. 
+
+Le r‚pertoire suppl‚mentaire \DIVERS contient uniquement des ex‚cutables.
+
+
+\LIB_VGA
+
+SOURCES      <REP>  //Sources de la bibliothŠque graphique
+
+
+\EDITEUR
+
+SOURCES      <REP>  //Sources de l'‚diteur
+EXE          <REP>  //Editeur de palette
+
+
+\3D
+
+SOURCES      <REP>  //Sources de la gestion 3D
+EXEMPLES     <REP>  //Sources des programmes d'exemples
+EXE          <REP>  //Programmes d'exemples
+
+
+\EFFETS
+
+COUL         <REP>  //Effets de couleurs
+                        rotation, d‚grad‚s, variation.
+SCREEN       <REP>  //Apparitions d'images
+                        ‚coulement, bandes, blocs, disque, rouleau.
+TRANSL       <REP>  //Translucidit‚
+                        translation, niveau de couleurs.
+FLOU         <REP>  //Lissages
+                        moyenne, niveau, lin‚aire.
+SCROLL       <REP>  //Scrollings
+                        d‚calage, rebouclant, pr‚d‚cal‚, plusieurs pages.
+SCROLL_T     <REP>  //Scrolltexts
+                        horizontal, relief, sinuso‹dal, vertical, inclin‚, 
+                        circulaire.
+TRANSF       <REP>  //D‚formations d'images
+                        r‚duction, distorsion, zoom, torsade, ‚lasticit‚,
+                        mapping circulaire.
+APP          <REP>  //Effets sp‚ciaux divers
+                        faisceau, comŠtes, champ d'‚toiles, spot, plasma, 
+                        tube, feu, transition.
+
+\JEUX
+
+DAMION       <REP>  //Jeu de r‚flexion en 3D
+TAQUIN       <REP>  //Jeu de casse-tˆte
+MEMO         <REP>  //Jeu de m‚moire
+SM           <REP>  //Jeu de course
+
+
+\DIVERS
+
+SM           <REP>  //Jeu de course
+BIMBO        <REP>  //Jeu d'arcade/r‚flexion
+GFI          <REP>  //D‚termination des formats de fichiers
+BSZ          <REP>  //Installeur de boot secteurs
+
 
