@@ -1,0 +1,16 @@
+* BIMBO version PC inachev‚e par C.E - 1992 - 
+* BIMBO version originale ST achev‚e par S.W - 1991 PRESSIMAGE -
+
+Pour r‚ussir un niveau, vous devez amener chaque clef dans sa serrure de mˆme 
+couleur.
+
+Vous avez, pour vous d‚placer, des cases qui peuvent bouger 0, 1, 2 ou 3 fois
+(appuyez sur la barre d'espace, selectionnez la case … d‚placer, puis la
+destination).
+
+La touche return permet de d‚poser une bombe rouge ou blanche ou bien de 
+visualiser les objets cach‚s dans les cases (utilisez les touches fl‚ch‚es
+droite et gauche).
+
+La bombe rouge permet de prendre l'objet cach‚ dans une case.
+La bombe blanche permet d'incr‚menter le d‚placement d'une case.

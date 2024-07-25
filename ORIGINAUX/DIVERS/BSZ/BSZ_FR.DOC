@@ -1,0 +1,161 @@
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ BootSectorZ v1.2 ³ (c) 1995-96 Duret-Lutz Alexandre (aka Pollux / OLYMPUS)
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+YOU'D BETTER READ bsz.doc IF YOU DON'T SPEAK FRENCH.
+
+ðððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððð
+
+Ce fichier contient plus que la traduction du BSZ.DOC puisque je suis beaucoup
+plus … l'aise en fran‡ais qu'en anglais :) (question vocabulaire, pas ortho-
+graphe: vous allez voir les belles fautes dont je suis capable...)
+Je remercie S‚bastien DUBOIS pour avoir pris la peine d'effectuer quelques
+corrections (mˆme si je ne me rappelle plus s'il les a vraiment faites...).
+
+ðððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððð
+
+Disclaimer:
+
+C'est pas moi !!! 
+La seule garantie que vous avez (en ce qui concerne BSZ) est la suivante:
+ - Je vous garantis que cette garantie est la seule que je vous fait.
+
+En d'autres termes, vous utilisez BSZ … vos propres risques et je d‚cline
+toutes responsabilit‚s quant … ce qu'il pourrait vous arriver. C'est net.
+
+Par exemple si votre ‚cran implose vous en ˆtes le seul responsable (mˆme si
+c'est BSZ qui en est la cause). 
+
+Honnˆtement, la seule chose qu'il me semble pouvoir vous arriver est la
+perte du contenu d'une disquette (mais ‡a ne m'est jamais arriv‚ et je pense
+que ‡a ne soit pas arriv‚).
+
+ðððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððð
+
+A quoi sert BSZ ?
+
+  BSZ est un installeur de boot secteurs. Vous choisissez un boot secteur
+dans sa petite bibliothŠque est BSZ vous l'installe sur la disquette qui se
+trouve dans A: ou dans B:.
+
+--------------------------------------------------------------------------------
+
+"Qu'est-ce qu'un boot secteur ?" 
+
+Il s'agit du premier secteur de la premiŠre piste de la premiŠre face d'un
+disque (dur ou disquette - BSZ ne travaille que sur disquettes). Ce secteur
+… une taille de 512 octets et contient quelques informations pour que le BIOS
+et le DOS soient capables d'utiliser correctement la disquette (par exemple
+le nombre de secteurs par piste, le num‚ro de s‚rie...). Le reste du boot 
+secteur peut ˆtre utilis‚ par un programme de boot. Ce programme peut-ˆtre
+librement modifiable, il est ‚x‚cut‚ lorsque vous laissez la disquette dans le
+lecteur pendant le d‚marage de votre PC. Vous avez d‚j… d– tomber sur des 
+disquettes qui vous affichaient
+           "Remove disk and strike a key"
+ou d'autre qui disaient
+           "Disque non-systeme / erreur disque..."
+ou enfin des disquettes qui ne disaient pas un mot et faisaient d‚marrer le PC
+depuis le disque dur directement.
+Ce sont tous des boots secteurs diff‚rents. Et c'est ce genre de petits
+programmes que BSZ se propose d'installer.
+Enfin, il faut noter que lorsque qu'on retire la zone de donn‚e r‚serv‚e au
+DOS il ne reste plus que 448 octets pour programmer, comparez ‡a … la taille
+que Windows prend sur votre disque dur pour deviner qu'on ne peut pas faire
+beaucoup de choses sur un boot secteur, surtout si l'on veut rester assez
+compatible (pour qu'un boot secteur ne plante pas sur certains systŠmes):
+par exemple les boot secteurs utilisant une carte VGA s'assurent qu'il
+y en a bien une (en tout cas ceux de BSZ) avant de faire leur travail, cela 
+r‚duit la place libre pour programmer ce "travail".
+
+ðððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððð
+
+Comment utiliser BSZ ?
+
+D‚j…, il faut lancer BSZ.
+Ensuite vous devez choisir, grƒce aux flŠches (haut et bas) le boot secteur
+qui vous plait. Puis mettez une disquette dans un lecteur (s'il s'agit du B:
+appyez sur la touche [B] avant de continuer).
+Cette disquette peut contenir d‚j… des fichiers.
+Maintenant, appuyez sur [Entr‚e].
+
+Jetez un oeil sur "STATUS:' qui indique l'‚tat de l'installation du dernier
+boot:
+
+'OK ' Indique que la derniŠre installation c'est effectu‚e sans problŠme.
+'WRI' Indique que BSZ est en train d'‚crire sur la disquette.
+'ERR' Indique que BSZ n'a pas r‚ussit … installer le boot secteur.
+      Dans ce cas r‚essayez, ‡a ne marche pas toujours du premier coup.
+      Sinon v‚rifier que la disquette n'est pas prot‚g‚e en ‚criture.
+      Sinon asseyez-vous en tailleur, posez vos mains (paumes vers le haut)
+      sur vos genoux, regardez en l'air et respirez du ventre pendant
+      une bonne minute, le plus souvent ‡a suffis pour ne pas r‚soudre le
+      problŠme. Sinon il y a une formule magique: "FORMAT A:".
+
+Pressez [Echap] pour retrouver votre environnement favori.
+
+Lorsque vous choisissez un boot secteur, BSZ vous donne les renseignements
+suivants:
+
+
+CPU:    processeur minimum en dessous duquel le boot secteur fera germer
+        le systŠme (aprŠs l'avoir plant‚ donc).
+
+VIDEO:  TXT ou VGA. Les boot secteurs utilisant une carte VGA s'assurent
+        qu'elle est bien pr‚sente et, dans la n‚gative, se contentent de
+        booter sur le disque dur.
+SYSTEM: Aucun boot secteur de BSZ ne lancera une disquette systŠme.
+LINK HD:Tous les boot secteurs bootent sur le disque dur ensuite.
+CRYPTED:Le boot secteur est crypt‚ (des anti-virus … base d'heuristiques
+        pourront vous le signaler s'ils sont performants).
+CRC:    Aucun boot secteur de BSZ n'effectue sa somme de contr“le.
+
+--------------------------------------------------------------------------------
+
+Voici les boot secteurs de BSZ:
+
+þ First One    : Mon premier boot secteur.
+þ Debug Boot   : Vous indique le contenu de tous les registres 16bits du
+                 processeur. Cela peut vous ˆtre utile pour r‚aliser un boot
+                 secteur pour votre propre PC (car ces valeurs varient d'un
+                 PC … l'autre).
+þ QuickBoot    : Boot sur le disque dur directement, sans rien dire.
+þ GUS INIT     : Initialise la GUS.
+þ SB INIT      : Pour ceux qui n'ont pas encore de GUS.
+þ Smiley Boot  : Affiche une trŠs petite image … l'‚cran.
+þ TimeDate Boot: Vous donne l'heure et la date si vous avez au moins un 286.
+                 Sinon il boot directement sur le disque dur.
+þ Own Message  : Pour celui-ci, vous pouvez personnaliser ce qu'il affiche
+                 grƒce au fichier BSZ.INI
+þ Fire !       : Une intro sur boot secteur ?!
+þ Tetribs      : Un Tetris. Attention vous pourrez renconterer quelques bugs.
+
+ðððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððð
+
+BSZ est FREEWARE, vous pouvez l'utiliser librement (sauf … des fins 
+commerciales) et le distribuer tout aussi librement (A condition de ne pas
+le vendre). SVP, copiez-le … vos amis.
+
+L'ensemble des fichiers distribu‚s avec BSZ est le suivant:
+                FILE_ID.DIZ    pour les sysops
+                BSZ_FR.DOC     ce fichier
+                BSZ.DOC        le mˆme en anglais
+                BSZ.EXE        BSZ lui-mˆme
+                BSZ.DAT        enregistrements des boot secteurs
+                BSZ.INI        config
+                WHATSNEW.REV   modifications apport‚es depuis la BSZ v0.9
+
+ðððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððððð
+
+Si vous avez r‚alis‚ un boot secteur, ou si vous avez des id‚es de boot
+secteurs, je suis prenneur !
+
+Vous pouvez me contacter pour n'importe quelle raison LEGALE … cette
+adresse.
+
+      +                      +
+        Duret-Lutz Alexandre
+        9 Av du 29 Ao–t 1944
+        51430 Tinqueux
+        France
+      +                      +
+

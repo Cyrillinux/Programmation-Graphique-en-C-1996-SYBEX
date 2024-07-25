@@ -1,0 +1,448 @@
+
+                            şşşş G-FI v2.65 şşşş
+                                 Ä31Ä03Ä96Ä
+                                  FREEWARE
+
+ş G-FI est un programme permettant de reconnaŒtre diff‚rents formats de
+  fichiers sans se servir de l'extension de ces derniers. G-FI regarde
+  directement … l'int‚rieur du fichier pour voir s'il n'y a pas quelques
+  signes distinctifs. De temps en temps, G-FI peut se baser sur la taille 
+  du fichier analys‚ (par exemple pour les CRCs de MSAV/CPAV). Jamais G-FI
+  ne se base sur l'extension (il n'y a pas de triche). Au total, G-FI peut 
+  reconnaŒtre 265 formats de fichiers. Enfin, il vous faut un 386 au minimum.
+
+
+ÄÄ[Le plan de la doc]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Demandez le programme...:
+En gros, le plan de cette doc est le suivant (c'est complŠtement d‚sorganis‚):
+    -> Fonctionnement de G-FI
+    -> Les options de G-FI
+    -> SET GFI=
+    -> Speed ? K‚zako ?
+    -> Couleurs et redirections
+    -> Pour m'aider/me contacter
+    -> Programmeurs
+    -> Freeware
+    -> Conditions de distribution
+    -> O— trouver G-FI
+    -> A venir
+    -> Bonus
+    -> Wanted
+    -> Le groupe Olympus
+    -> Les remerciments
+
+ş Toutes les marques cit‚es dans GFI.DOC ou GFI.EXE sont des marques d‚pos‚es
+  par leurs propri‚taires respectifs. 
+
+
+ÄÄ[Comment ‡a marche ?]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş J'ai distingu‚ trois m‚thodes dans le fonctionnement de G-FI, la premiŠre est
+  la reconnaissance des fichiers par leur en-tˆte (header). C'est la m‚thode
+  la plus ais‚e et c'est aussi celle qui permet de reconnaŒtre le plus de 
+  fichiers. En effet la plupart des programmes apposent au d‚but de leurs
+  fichiers une marque de reconnaissance. Par exemple, les fichiers ‚x‚cutables
+  (.EXE) commencent tous par les lettres 'MZ' ou (plus rarement) 'ZM', les
+  images au format GIF commencent par les lettres 'GIF' suivies du num‚ro de
+  version '87a' ou '89a'.
+  Pour avoir la liste (en vrac) des fichiers reconnus par cette m‚thode, tapez
+  GFI /F [/P]
+  (l'option /P fait un affichage page … page comme avec le dir du DOS)
+  De cette liste il faut retirer 4 r‚p‚titions (.EXE, .COM, et CorelDraw) si
+  vous voulez v‚rifier le compte du nombre de fichiers reconnus par G-FI.
+
+ş La seconde fa‡on de reconnaŒtre les fichiers n'est pas UNE m‚thode mais
+  plusieurs m‚thodes, pr‚cis‚ment, il y a une m‚thode pour chaque format.
+  Par exemple pour reconnaŒtre un module (.MOD), il faut aller au beau milieu
+  du fichier pour voir s'il n'y a pas les lettres 'M!K!' ou 'M.K.'.
+  L'inconvenient de ce type de travail c'est une s‚rieuse perte de temps.
+  C'est pour cela que l'option /R permet de ne pas effectuer ces tests.
+  Il n'est pas possible de lister les formats reconnus par cette m‚thode
+  depuis GFI.EXE.
+  Ces formats sont (toujours en vrac):
+   1 Texte (mˆme avec l'option /R)
+   2 Archive DWC
+   3 CRCs de MSAV/CPAV
+   4 Module 31 instruments
+   5 Module 4 voies
+   6 Module 6 voies
+   7 Module 8 voies
+   8 Musique au format .ROL
+   9 Image Bitmap Windows (BMP) 
+     Note: Pour certaines images BMP, G-FI affiche un '?' lorsque
+     l'en-tˆte est mal respect‚e, ce n'en est peut-ˆtre pas une vraie.
+  10 Animation FLI
+  11 Animation FLC
+  12 Catalogue G-MOD
+  13 OBJet
+  14 Image PCX
+  15 Palette (PAL)
+  16 PIF Windows
+  17 Base de donn‚es dBase (… partir de dBase III)
+  18 Format Photo CD
+  19 Drivers de caractŠres
+  20 Drivers de bloc
+  21 > Windows (d‚tect‚ pour de vrai, l'autre m‚thode est moins s–re)
+  22 > Windows (32bits)
+  23 Palette VGA brute
+
+ş Une derniŠre methode impl‚ment‚e depuis la version 1.76 permet de reconnaŒtre
+  le compilateur d'un programme. GFI fait cela en comparant les premiŠres
+  instructions d'un ‚x‚cutable avec celles qu'il connait. Cette m‚thode n'est
+  ‚videment utilis‚e que sur les ‚x‚cutables et n'est pas appliqu‚e lorsque
+  l'option /R est fournie. Les formats suivants sont reconnus:
+
+   1 Turbo Pascal
+   2 Turbo C/C++
+   3 < LZEXE (modifi‚)    (*)
+   4 < Diet (modifi‚)     (*)
+   5 Quick C
+   6 < Protect!
+   7 Turbo Basic
+   8 < UC2EXE (modifi‚)   (*)
+   9 Quick Basic
+  10 < FPR (modifi‚)      (*)
+  11 < LS Crypt (modifi‚) (*)
+  12 < PROPACK (modifi‚)  (*)
+  13 < UserName
+  14 < COMPACK (EXE)
+  15 PMode/W
+  16 < WWPack (modifi‚)   (*) 
+  17 Watcom C/C++
+  18 DOS/4GW
+
+(*) Ces formats sont d‚j… reconnus par la premiŠre m‚thode (je ne les ai pas 
+    compt‚ dans le nombre total de formats). Cependant, il est possible de 
+    maquiller (voir de supprimer) l'en-tˆte de ces types de programmes pour 
+    qu'ils ne soient plus reconnus, cette m‚thode permet de les reconnaitre 
+    tout de mˆme.
+
+
+ÄÄ[La syntaxe de GFI]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş Syntaxe de GFI:
+
+  GFI [options] [fichiers]
+
+  Tout est facultatif et m‚langeable … souhait. Les options peuvent ˆtre
+accol‚es, par exemple /AH01T … la place de /A /H01 /T
+
+  Les options valides sont:
+
+  /? -> Affiche un ‚cran d'aide.
+  /A -> Affiche les attributs de chaque fichier.
+  /D -> Cr‚e des DESCRIPT.ION pour 4DOS en ‚crasant les anciens.
+        (la commande DIR de 4DOS se sert de ce genre de fichier)
+  /F -> Affiche la liste des formats reconnus par leur en-tˆte.
+  /H -> Affiche les dates et heures des fichiers comme le ferait un dir.
+        cette option peut-ˆtre suivie de deux paramŠtres facultatif servant
+        a formater la date et l'heure: /Hab
+          ou "a" peut ˆtre:           et "b" peut ˆtre;
+          0 pour JJ/MM/AA             0 pour HH:MM:SS
+          1 pour MM/AA                1 pour HH:MM
+          2 pour AAAA                 2 pour HHh
+          3 pour aucune date          3 pour aucune heure
+        Ces paramŠtres servirons … ceux qui veulent faire un joli listing de
+        leur disque dur.
+  /I -> Afficher la liste des sous r‚peroires. Lorsque l'option est suivie d'un
+        point (/I.) les r‚pertoires [.] et [..] ne sont pas affich‚s.
+  /M -> Monochrome. €a sert pour faire des redirections (car en couleur elles
+        ne marchent pas).
+  /P -> Attend la frappe d'une touche aprŠs chaque ‚cran. (Comme avec DIR)
+  /R -> Voir paragraphe pr‚c‚dent et paragraphe suivant.
+  /S -> Recursivit‚: Traite les fichiers du(des) r‚pertoire(s) sp‚cifi‚(s)
+        ainsi que ceux de tous ses(leurs) sous-r‚pertoires.(Comme avec DIR)
+        (Pratique avec /D)
+  /T -> Affiche la taille de chaque fichier.
+  /Z -> Affiche les FILE_ID.DIZ en couleur (sauf si /M).
+        Les FILE_ID.DIZ ne sont affich‚s que lorsque G-FI affiche tous les
+        fichiers d'un r‚pertoire, si vous n'avez r‚clam‚ que les *.EXE (par
+        exemple) les FILE_ID.DIZ ne sera pas affich‚.
+  /* -> Remerciements. (voyez la fin de la doc aussi)
+
+Trois exemples ‚quivalents:
+
+  GFI /S /P *.* /A d:\bidon\*.* /H /T
+  GFI /A . /SH00T d:\bidon /P
+  GFI . D:\bidon\ /PATHS
+
+Il faut savoir que le '.' est compris par beaucoup de commandes du dos (par
+exemple DEL) comme synonyme de '*.*', G-FI l'accepte aussi.
+
+
+ÄÄ[SET GFI]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Vous pouvez vous arranger que vos options pr‚f‚r‚es soient prisent en compte
+par d‚faut grace aux variables d'environnement du DOS: rajoutez simplement dans
+votre AUTOEXEC.BAT une ligne comme la suivante:
+
+SET GFI=liste_des_options
+
+Pour economiser la m‚moire, vous n'ˆtes pas oblig‚ de mettre des '/' devant 
+chaque option, les deux lignes suivantes sont equivalantes:
+
+SET GFI=/A /P /T /H
+SET GFI=APTH
+
+La derniŠre vous fait simplement economiser quelques octets.
+Si vous voulez que G-FI remplace votre commande dir, je vous conseille cette
+ligne:
+
+SET GFI=H01TI
+
+Il n'existe pas (encore ?) de moyen d'empecher G-FI de lire ces options. €a
+veut dire que si vous avez indiqu‚ la ligne pr‚c‚dante et que pour une raison
+ou une autre vous ne voulez plus de date et d'heure avec G-FI vous devrez vous
+suicider. Une autre alternative serait de taper "SET GFI=" au prompt.
+
+
+ÄÄ[Speed K‚zako ?]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Compar‚ … DIR, G-FI est lent, c'est certain. Vous avez quand mˆme de la chance
+parce qu'au d‚but il ‚tait plus de deux fois plus lent. En prennant un peu de
+temps je pourrais l'accelerer un peu mais je n'ai pas le temps. Selon un r‚cent
+sondage, G-FI passe 30% de son temps … ouvrir les fichiers, 50% … les lire. Ce
+n'est pas moi qui ai ‚crit les routines d'ouverture et de lecture du DOS, je ne
+pourrais optimiser que les 20% restants, c'est … dire presque rien. De toute
+fa‡on, je n'ai pas beaucoup de temps, je pr‚fŠre rajouter des nouveaux formats
+de fichiers.
+
+Mon disque dur (80Mo, assez lent) comporte 1730 fichiers sur 57Mo.
+Les deux exp‚riences suivantes ont ‚t‚ r‚alis‚es avec G-FI v1.81 et sur mon
+disque dur (d‚fragment‚) et sans r‚sident (ex:caches-disques):
+
+C:\>GFI /S       -> 1536 fichiers reconnus en 2'58"
+C:\>GFI /S /R    -> 1488 fichiers reconnus en 2'09"
+
+Sont consid‚r‚s comme "fichiers reconnus" les fichiers pour lesquels G-FI a
+indiqu‚ un ou plusieurs type(s) (exact(s) ou non).
+
+ÚÄ Astuce:
+³ Vous pouvez interrompre G-FI en appuyant sur
+³ la touche Echap, mˆme pendant une redirection.
+ÀÄÄÄÄÄÄÄÄÄÄ 
+
+ÄÄ[Couleur et redirection]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş Le problŠme des couleurs:
+
+Le DOS permet normalement d'utiliser 16 couleurs, les 8 premiŠres sont fades
+et les 8 autres sont brillantes. Les 16 couleurs peuvent-ˆtre utilis‚es pour
+colorier les textes, par contre pour le fond on ne peut-utiliser que les 8
+premiŠres, sinon le texte clignote. Il est possible d'empˆcher le texte de
+clignoter et d'autoriser les 16 couleurs pour le fond, c'est ce que fait
+G-FI lorsque vous le laissez travailler en couleur. Le seul problŠme est qu'…
+la fin, G-FI ne r‚tablit pas le clignotement (sinon ce qu'il a affich‚ se 
+mettrait … clignoter dans tous les sens). Cela ne doit pas ˆtre trŠs gˆnant.
+Si cela vous gˆne, aprŠs avoir utilis‚ GFI en couleur, lancez-le avec comme
+paramŠtre /M ou /? (je conseille /?) et tout redeviendra comme avant.
+
+ÚÄ Astuce:
+³ Quelques fois il arrive de se retrouver en mode graphique … la terminaison
+³ d'un programme. En g‚n‚ral, lancer GFI permet de basculer en mode texte.
+ÀÄÄÄÄÄÄÄÄÄÄ
+
+ş Pour la redirection des sorties:
+
+Pour ‚crire en couleur G-FI n'utilise pas de DOS, or c'est justement lui qui
+traite les redirections. C'est pour cela que pour faire une redirection 
+correcte, il faut forcer G-FI … utiliser le DOS. Comment faire ? C'est trŠs
+simple, G-FI utilise le DOS quand vous lui avez demand‚ de ne pas ‚crire en
+couleur, c'est-…-dire lorsque vous avez sp‚cifi‚ l'option /M. Par exemple
+si vous voulez sortir la description de tout votre disque dur sur l'imprimante
+vous pouvez faire:
+
+  GFI C:\ /S /A /T /M > PRN
+                   ^^^^^^^^
+
+ÄÄ[Pour me contacter et/ou m'aider]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş Aidez-moi !
+
+ Si vous connaissez des formats qui ne sont pas reconnus par GFI, si vous avez
+d‚velopp‚ vos propres formats, ou si vous vous ˆtes aper‡u que GFI reconnaŒt
+mal un (ou des) format(s): ‚crivez-moi, envoyez-moi des exemples, si possible
+(c'est … dire si c'est l‚gal) le programme qui utilise ces formats et, si vous 
+pouvez, la fa‡on de reconnaŒtre ces formats. J'accepte de vous renvoyer vos 
+disquettes (avec la nouvelle version de G-FI) si vous m'avez donn‚ votre 
+adresse.[Je n'ai qu'un lecteur 3.5"] S'il vous plaŒt (et si vous pouvez), 
+remplissez vos disquettes avec n'importe quoi (de legal, j'insiste). 
+ Aussi, n'ayez pas peur de remplir votre lettre de critiques. A la limite, ‡a
+me fera plus plaisir qu'une lettre de compliments dans la mesure ou elles me
+permettent d'am‚liorer G-FI.
+
+J'ai particuliŠrement besoin d'aide pour
+-reconnaŒtre les fichiers .COM (G-FI le fait -trŠs- mal car il se base 
+ uniquement sur le 1ø octet et le compare aux 3 que j'ai trouv‚ le plus
+ souvent).
+-reconnaŒtre les compilateurs (G-FI ne les reconnait pas assez).
+-tout autre format... surtout Images, Archives, Compresseurs d'‚x‚cutables,
+ et les formats de musique/son.
+-voyez aussi le paragraphe "wanted" (la derniŠre fois que je l'ai vu il ‚tait
+ plus bas)
+
+Mon adresse est:
+³ Duret-Lutz G-Alexandre,
+³ 9, avenue du 29 ao–t 1944,
+³ 51430 Tinqueux.
+
+Vous pouvez aussi laisser un message … Thanatos (qui transmettra) en 
+l'adressant … Paul Jung sur DUNE BBS (16.1.47.02.25.97).
+
+
+ÄÄ[Programmeurs]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Trois choses:
+  La premiŠre est de vous demander de laisser des headers dans vos fichiers et
+de me les communiquer pour que je les incorpore dans G-FI.
+  La deuxiŠme est de vous dire que je ne fais pas de protectionnisme (sauf
+s'il s'agit de listings complets) et que je suis prˆt … vous renseigner sur
+la m‚thode utilis‚e par G-FI pour reconnaitre tel ou tel format.
+  Et la troisiŠme est une petite annonce:
+
+  Je recherche des auteurs SW/FW/DP pour faire ce que j'appellerai de la 
+co-distribution. J'explique: lorsque j'envoie des mises … jours de mes
+programmes … des utilisiteurs ou … des distributeurs, j'y joins les v“tres
+et vous en faites autant de votre c“t‚. De cette fa‡on, nos programmes …
+tout les deux (ou plus) sont mieux distribu‚s.
+
+
+ÄÄ[Freeware]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Ce paragraphe n'a pas pour but de vous expliquer ce qu'est le Freeware mais
+pourquoi G-FI est Freeware. Si vous ne savez pas ce que c'est, lisez la doc de
+n'importe quel autre Freeware (c'est bien de lire les docs, ‡a fait plaisir
+aux auteurs). G-FI est Freeware parceque je ne veux pas qu'il soit Shareware.
+Pourquoi ? D‚j… je ne veux pas faire payer mes programmes pour une raison trŠs 
+simple: quand j'ai le choix entre deux programmes semblables dont l'un est 
+gratuit, c'est ce dernier que je garde (pas bˆte). Et vous ? Ensuite, dans le 
+cas pr‚cis de G-FI, qui est un programme dont on peut trŠs bien se passer 
+(c'est un luxe :-) je ne vois pas tout … fait pourquoi des gens 
+s'enregistreraient (ceci dit si vous voulez vraiment me donner quelque chose, 
+envoyez moi plut“t des timbres, ‡a me permettra de ne pas me ruiner dans mon 
+courier). De plus, je pense que si j'avais mis G-FI en shareware je n'aurais 
+pas re‡u deux lettres. Enfin puisque je demande votre aide, je ne peux 
+pas me faire payer.
+
+Il existe d'autres programmes comme G-FI. Celui que je considerais comme le
+meilleur se nomme 'FILE', il reconnaŒt les compilateurs, donne les tailles
+des images, les titres des modules et affiche les r‚sultats en couleurs (c'est
+de lui que G-FI est inspir‚), mais... il est un shareware am‚ricain. Mais j'en
+ai trouv‚ un autre qui le bas trŠs largement, c'est un shareware (italien) 
+qui s'appelle WCOMP, il n'est pas trŠs joli, il est lent et pas pratique, il 
+fait 10 fois la taille de G-FI, il possŠde une bibliothŠque d'extensions (il 
+triche !!!) et une bibliothŠque d'headers modifiables toutes les deux (en plus 
+des internes), il d‚compresse les ‚x‚cutables (LZEXE PKLITE etc...) pour aller 
+trouver (entre-autre) le nom de l'auteur (c'est pas mal ‡a), il affiche les 
+premiŠres lignes des textes, fait des CRCs, etc... Il est trŠs puissant.
+
+
+ÄÄ[Distribution]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş Etant donn‚ que je suis l'auteur de ce programme, il m'appartient (si,si!).
+  Vous ˆtes cependant autoris‚ … le distribuer et … l'utiliser comme bon vous 
+  semble tant que les trois conditions suivantes sont respect‚es:
+  1] Vous ne devez pas modifier les fichiers GFI.DOC, GFI.EXE et FILE_ID.DIZ.
+  2] Ces trois fichiers doivent toujours s'accompagner.
+  3] Vous ne vendez-pas le programme lui-mˆme (mais vous pouvez vendre
+     la disquette, ou demander des frais de copie, de port etc...
+     -Je dis cela en pensant aux distributeurs de Shareware/Freeware/DP-).
+
+
+ÄÄ[O— trouver G-FI]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+* Le DP Tool Club : DP Tool Club
+                    BP 745
+                    59657 Villeneuve d'Ascq
+
+* DUNE B.B.S. Les Sysops se font appeller Gizmo et Bisounours mais c'est
+  s‚rieux quand mˆme ;-) 16.1.48.79.04.22 c'est … Paris. Allez fouiller dans
+  //FILES/DEMOS/GROUPS@SUPORTED/OLYMPVS
+  C'est Thanatos/OLYMPUS qui s'occupe d'uploader G-FI. Vous y trouverez aussi
+  les d‚mos du groupe.
+
+ÄÄ[BONUS]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Utilisateurs de 4DOS (je n'utilise pas 4DOS), Kiki/Lords of Ring vous offre
+ce ridicule petit alias (les paralys‚s des doigts s'abstiendrons):
+
+NDIR SET r=%1^IF %@INDEX[%&,/s] != -1 SET s=/s^IF %s==%r UNSET r^GFI %& /M /D
+%s > NUL^DIR %& /N1EJPA %s^IFF "%r"=="" THEN^DEL descript.ion %s > NUL^ELSE^DEL
+%@PATH[%r\]descript.ion %s > NUL^ENDIFF^UNSET r >&> NUL\UNSET s >&> NUL
+
+Si ‡a marche il vous suffira de taper NDIR pour avoir un DIR avec les 
+commentaires de G-FI en face. L'option /S ainsi qu'une specifications de 
+fichier est possible. Bonne chance.
+
+ÄÄ[ASTUCE]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  G-FI permet de faire de beaux DIR d'un disque, je prend mon exemple:
+  J'ai une collection de d‚mos sur mon disque dur G:, en avoir la liste
+  peut m'ˆtre pratique pour faire des ‚changes avec des copains, plut“t que
+  de recopier … la main et dans un fichier le nom de toutes mes d‚mo (une
+  telles liste n'est pas pratique … garder … jour), plut“t que de faire un
+  DIR /S du disque (dans ce cas on perd le nom complet de la d‚mo et le nom
+  du groupe auteur), j'utilise G-FI et sa fonction d'affichage des FILE_ID.DIZ
+  La syntaxe … utiliser est par exemple:
+
+  GFI G:\ /SMTH01I.Z > DEMO.LST
+
+  Evidement, cela ne s'applique pas qu'aux d‚mos pourvu qu'il y est un
+  FILE_ID.DIZ … afficher.
+
+ÄÄ[Wanted]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş Les formats suivants sont attendus … la caisse pour d‚corticage:
+
+  Des ‚x‚cutables compress‚s par K-Vetch
+  Des ‚x‚cutables compress‚s par Pro-Pack
+  Des ‚x‚cutables compil‚s par GNU C
+
+Quelqu'un a-t-il de la doc sur les entˆte (NE,PE) Windows? Je veux dire comment
+distinguer une application d'un DLL et faire la difference entre quelque chose
+pour OS/2 et pour Win.
+
+ÄÄ[Le groupe OLYMPUS]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş Le groupe OLYMPUS dont je fait partie est compos‚ de cinq membres:
+  -Adonis (musique)
+  -Hermes (musique)
+  -Orph‚e (graphismes)
+  -Pollux (code)
+  -Thanatos (code)
+
+ Nous avons d‚j… fait deux d‚mos, "Calypso" et "Olympus 31" qui tiennent 
+ chacune sur une disquette. Vous pouvez les trouver sur DUNE BBS (voir plus
+ haut).
+
+ÄÄ[MERCI!!!]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Je tiens … remercier les personnes suivantes:
+
+  Pour leur concours (par ordre d'arriv‚e):
+
+     Rafa‰l JAFFERALI (Royal Software)
+     Olivier ETIENNE
+     Maxime ETTER (MaxX)
+     Paul JUNG (Thanatos/OLYMPUS)               ô Surtout     
+     Jean-Marc TREMEAUX (Dr Bios)               õ eux-deux
+     L'‚quipe de FLOPPY
+     Christophe KESMAECKER (Kiki/Lords of Ring)
+     Pierre FOUCART
+     Jean-Baptiste FERRAND (Adonis/OLYMPUS)
+     Walter SIRACUSA
+
+  Pour la correction des fautes d'orthographe (pas toutes parce qu'il n'est
+  pas infaillible et que je ne le torture pas … chaque fois que j'ajoute
+  quelque chose … cette doc.) :
+
+     S‚bastien DUBOIS (Splin)
+
+  G-FI a ‚t‚ compr‚ss‚ avec LZEXE 0.91 de Fabrice BELLARD puis crypt‚ par
+  FPR de Fr‚d‚ric BISSON. Je remercie ces deux auteurs pour avoir diffus‚
+  leurs programmes en tant que freewares.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      La d‚sorganistion qui rŠgne dans cette doc est (c) Pollux/OLYMPUS.

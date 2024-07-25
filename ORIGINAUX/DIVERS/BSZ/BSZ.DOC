@@ -1,0 +1,117 @@
+ Úִִִִִִִִִִִִִִִִִִ¿
+ ³ BootSectorZ v1.2 ³ (c) 1995-96 Duret-Lutz Alexandre (aka Pollux / OLYMPUS)
+ ְִִִִִִִִִִִִִִִִִִÙ
+
+ננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננ
+
+Before all, note that I am not a good english writer. So you'll see all sort
+of mistake (and especialy 's' missings and grammar faults).
+
+ננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננ
+
+Disclaimer:
+
+I (Duret-Lutz Alexandre) do not warrant that this program will run correctly
+on your system. I disclaim all warranties, expressed or implied, including
+but not limited to implied warranties of fitness for any particular purpose
+and of merchantability. In no event will I be liable to you for any damages
+of any sort du to the use or inability to use this program, or for any claim
+by any other party.
+
+ננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננ
+
+BSZ's job:
+
+BSZ is a boot sector installer, nothing more. All boot sector are ready for
+use and can be installed by a single keystroke.
+
+Thanks to the virtual boot sector of 2M disks, BSZ is compatible whith it.
+
+--------------------------------------------------------------------------------
+
+What a Boot Sector ? This is the first sector of the first track of the first
+side of a drive. It is 512 bytes large. It contains some bios and dos data
+(like track number, serial number, etc...) and the 448 bytes left can be
+use by some code. What BSZ do is puting its own code in here. The boot
+sector's code is run once when you reboot your system with a disk in the drive.
+
+ננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננ
+
+How to do ?
+
+Simply type "BSZ" on the prompt. BSZ will start.
+Then, select one of the offered boot sectors with then arrow keys.
+Put a disk in your drive (you can chose your drive with 'A' -for A:- and 'B'
+-for B:-) this disk can be full or empty.
+Now press "Return".
+Have a look to "STATUS:", BSZ can write here three words:
+
+'OK ' means that the last operation went whithout problem
+'WRI' means that BSZ is write on the disk (do not remove it)
+'ERR' means that BSZ encounter a problem during the last operation
+      (you should retry)
+
+Press "Escape" for leave BSZ.
+
+When you're chosing a bootsector, BSZ display all sort of informations of
+the boot selected. They are:
+
+CPU:    indicates the processor above the one the boot won't work (=will hang
+        up the system)
+VIDEO:  indicates the video mode used (TXT or VGA) by the boot.
+SYSTEM: indicates if the disk can be a system disk or not. (for now, all BSZ's
+        boot sectors do not support system boot).
+LINK HD:signify that the boot whill continue in running the hard drive boot
+        sector (so the system starts without changing the disk). For now, all 
+        BSZ's boot sectors go on with HD.
+CRYPTED:indicate that boot sector contain decrypting routines. Some heuristics
+        based anti-virus shouldn't appreciate.
+CRC:    indicate that the boot sector perform it's own CRC. (For now, none of 
+        the BSZ's boot sectors do that).
+
+--------------------------------------------------------------------------------
+
+Here are the boot sectors offered:
+
+‏ First One  : The first boot sector I wrote. Simply try it!
+‏ Debug Boot : It shows all the register at boot startup. This can help you
+               making a boot sector for your own system (not for the others
+               because these value won't be the same).
+‏ QuickBoot  : Do nothing.
+‏ GUS INIT   : Shut up the GUS
+‏ SB INIT    : Shut up the SB
+‏ Smiley Boot: Display a very small picture (a smile) on the screen.
+‏ Time Boot  : Give you the date and the time. (On a CPU less than 286,
+               the time and date aren't given.
+‏ Own Message: Use BSZ.INI to modify the message writen.
+‏ Fire!      : This is what I call a short boot sector intro.
+‏ Tetribs    : A bugged Tetris.
+
+ננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננ
+
+BSZ is FREEWARE, this means that you can copy it freely (if you don't make
+any modification in it) arround yourself (and farther if you want !).
+Please, share it with your friends, but DO NOT SELL IT ! And do not make 
+any commercial use of BSZ.
+
+Original package contains those files
+              
+              FILE_ID.DIZ    Short Description
+              BSZ.DOC        This file
+              BSZ_FR.DOC     The same in french
+              BSZ.EXE        BSZ itself
+              BSZ.DAT        Boot Sectors records
+              BSZ.INI        Config file.
+              WHATSNEW.REV   Changes from v0.9
+
+ננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננננ
+
+For contacting me (e.g. if you have written a boot sector and you want I add
+it in BSZ), write (my mail) to :
+
+      +                      +
+        Duret-Lutz Alexandre
+        9 Av du 29 Ao–t 1944
+        51430 Tinqueux
+        France
+      +                      +

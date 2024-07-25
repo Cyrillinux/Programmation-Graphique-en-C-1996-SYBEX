@@ -1,0 +1,11 @@
+BSZ v1.2 (03/08/96) Added the TETRIBS boot sector.
+
+BSZ v1.1 (06/29/95) Added "RETRY=" in BSZ.INI
+                    Modified FIRE! boot sector
+
+BSZ v1.0 (06/16/95) Added two more boot sectors ( OWN MESSAGE , FIRE! ).
+                    Added BSZ.INI file (for OWN MESSAGE boot sector).
+                    Fixed a bug in FIRST ONE boot sector.
+                    Added this file.
+
+BSZ v0.9 (06/09/95) First relase.
